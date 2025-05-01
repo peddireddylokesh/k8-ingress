@@ -17,7 +17,7 @@ spec:
         app: app1
     spec:
       containers:
-      - name: nginx
+      - name: app1
         image: peddireddylokesh/app1:1.0.0
         ports:
         - containerPort: 80
@@ -43,7 +43,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 443}]'
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:897729141306:certificate/d9178137-3fa4-4374-a300-f7db62c9ad11
-    alb.ingress.kubernetes.io/group: lokeshportfo
+    alb.ingress.kubernetes.io/group: peddireddylokesh
 spec:
   ingressClassName: alb
   rules:
