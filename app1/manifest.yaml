@@ -41,8 +41,8 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:arn:aws:acm:us-east-1:897729141306:certificate/b1707e1b-9725-41f1-8265-59786ab76250
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:897729141306:certificate/d9178137-3fa4-4374-a300-f7db62c9ad11
     alb.ingress.kubernetes.io/group: lokeshportfo
 spec:
   ingressClassName: alb
