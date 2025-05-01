@@ -42,7 +42,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 443}]'
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:897729141306:certificate/d9178137-3fa4-4374-a300-f7db62c9ad11
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:897729141306:certificate/9a5f6404-f96a-48cb-8d39-cad3064df139
     alb.ingress.kubernetes.io/group: peddireddylokesh
 spec:
   ingressClassName: alb
