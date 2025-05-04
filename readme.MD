@@ -58,3 +58,6 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n ku
 
 
 
+* chmod +x install-alb-controller.sh
+
+* ./install-alb-controller.sh
