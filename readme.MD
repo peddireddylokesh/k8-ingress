@@ -18,6 +18,7 @@ eksctl utils associate-iam-oidc-provider \
 * IAM Policy
 ```
 curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.12.0/docs/install/iam_policy.json
+
 ```
 
 
@@ -28,9 +29,16 @@ curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-lo
 aws iam create-policy \
     --policy-name AWSLoadBalancerControllerIAMPolicy \
     --policy-document file://iam-policy.json
+
 ```
 
-* Provider access to EKS through IAM Policy
+
+* if it says already policy exist then delete it and recreate it  delete command is 
+```
+aws iam delete-policy --policy-arn arn:aws:iam::897729141306:policy/AWSLoadBalancerControllerIAMPolicy
+```
+
+* Provider access to EKS through IAM Policy[ ACCOUNT_ID=897729141306REGION_CODE=us-east-1, CLUSTER_NAME=expense ]
 ```
 eksctl create iamserviceaccount \
 --cluster=$CLUSTER_NAME \
@@ -55,40 +63,12 @@ helm repo add eks https://aws.github.io/eks-charts
 ```
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=$CLUSTER_NAME --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
 ```
-
-
-
-* chmod +x install-alb-controller.sh
-
-* ./install-alb-controller.sh
-
-
-
-# before this executing you need to run these 
+* or upgrade helm 
+```
+helm upgrade --install aws-load-balancer-controller eks/aws-load-balancer-controller \
+  -n kube-system \
+  --set clusterName=expense \
+  --set serviceAccount.create=false \
+  --set serviceAccount.name=aws-load-balancer-controller
 
 ```
-curl --silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-sudo mv /tmp/eksctl /usr/local/bin
-eksctl version
-```
-
-```
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-aws --version
-```
-
-```
-curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/latest/2023-11-14/bin/linux/amd64/kubectl
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin
-kubectl version --client
-```
-
-```
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-helm version
-```
-
-* then run the install-alb-controller.sh file with sudo permission.
